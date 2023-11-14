@@ -83,15 +83,65 @@ public class WaiterServiceImpl implements WaiterService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    @Transactional
-    public WaiterDTO updateWaiter() {
-        return null;
-    }
 
     @Override
     @Transactional
-    public AckDto deleteWaiter() {
-        return null;
+    public WaiterDTO updateWaiter(
+            @PathVariable(name = "waiter_id") Long id,
+            @ModelAttribute WaiterEntity waiter) {
+
+        WaiterEntity waiterEntity = waiterRepository.findById(id).orElseThrow(()
+                -> new BadRequestException("Waiter with this id doesn't exist"));
+
+
+        if(waiter.getFirstname() != null && !waiter.getFirstname().trim().isEmpty()){
+            waiterEntity.setFirstname(waiter.getFirstname());
+        }
+
+
+        if(waiter.getLastname() != null && !waiter.getLastname().trim().isEmpty()){
+            waiterEntity.setLastname(waiter.getLastname());
+        }
+
+
+        if(waiter.getSalary() != null){
+            waiterEntity.setSalary(waiter.getSalary());
+        }
+
+
+        if(waiter.getWorkingDaysPerMonth() != null){
+            waiterEntity.setWorkingDaysPerMonth(waiter.getWorkingDaysPerMonth());
+        }
+
+
+        if(waiter.getTablesServedPerMonth() != null){
+            waiterEntity.setTablesServedPerMonth(waiter.getTablesServedPerMonth());
+        }
+
+
+        if(waiter.getWaiterTips() != null){
+            waiterEntity.setWaiterTips(waiter.getWaiterTips());
+        }
+
+
+        waiterRepository.saveAndFlush(waiterEntity);
+
+        return waiterDTOFactory.createWaiterDTO(waiterEntity);
+    }
+
+
+    @Override
+    @Transactional
+    public AckDto deleteWaiter(
+            @PathVariable(name = "waiter_id") Long id) {
+
+
+        if(waiterRepository.findById(id).isEmpty()){
+            throw new BadRequestException("Waiter with this id doesn't exist.");
+        }
+
+        waiterRepository.deleteById(id);
+
+        return AckDto.builder().answer(true).build();
     }
 }

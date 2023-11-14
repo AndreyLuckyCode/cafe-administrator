@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.transaction.Transactional;
+import javax.xml.bind.ValidationException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -85,19 +86,26 @@ public class CafeAdminServiceImpl implements CafeAdminService{
             throw new BadRequestException("Admin with this id doesn't exist.");
         }
 
+
         CafeAdminEntity admin = cafeAdminRepository.getById(id);
 
 
         if(firstname != null){
             admin.setFirstname(firstname.trim());
+        } else {
+            throw new BadRequestException("Admin firstname can't be empty");
         }
 
         if(lastname != null) {
             admin.setLastname(lastname.trim());
+        } else {
+            throw new BadRequestException("Admin lastname can't be empty");
         }
 
         if(salary != null) {
             admin.setSalary(salary);
+        } else {
+            throw new BadRequestException("Admin salary can't be empty");
         }
 
         cafeAdminRepository.saveAndFlush(admin);
@@ -105,7 +113,6 @@ public class CafeAdminServiceImpl implements CafeAdminService{
 
         return  cafeAdminDTOFactory.createCafeAdminDTO(admin);
     }
-
 
 
     @Override

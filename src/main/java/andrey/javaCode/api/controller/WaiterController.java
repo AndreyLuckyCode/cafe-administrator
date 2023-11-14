@@ -1,5 +1,6 @@
 package andrey.javaCode.api.controller;
 
+import andrey.javaCode.api.dto.AckDto;
 import andrey.javaCode.api.dto.WaiterDTO;
 import andrey.javaCode.api.service.WaiterService;
 import andrey.javaCode.storage.entities.WaiterEntity;
@@ -34,7 +35,21 @@ public class WaiterController {
     @GetMapping(GET_WAITERS)
     public List<WaiterDTO> getWaiters (
             @PathVariable(name = "admin_id") Long id){
-
         return waiterService.getWaiters(id);
+    }
+
+
+    @PatchMapping(UPDATE_WAITER)
+    public WaiterDTO updateWaiter(
+            @PathVariable(name = "waiter_id") Long id,
+            @ModelAttribute WaiterEntity waiter){
+        return waiterService.updateWaiter(id, waiter);
+    }
+
+
+    @DeleteMapping(DELETE_WAITER)
+    public AckDto deleteWaiter(
+            @PathVariable(name = "waiter_id") Long id){
+        return  waiterService.deleteWaiter(id);
     }
 }

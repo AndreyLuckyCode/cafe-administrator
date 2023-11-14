@@ -15,10 +15,16 @@ public interface WaiterService {
             @RequestParam(name = "admin_id") Long id,
             @ModelAttribute WaiterEntity waiterEntity);
 
+
     public List<WaiterDTO> getWaiters(
             @PathVariable(name = "admin_id") Long id);
 
-    public WaiterDTO updateWaiter();
 
-    public AckDto deleteWaiter();
+    public WaiterDTO updateWaiter(
+            @PathVariable(name = "waiter_id") Long id,
+            @ModelAttribute WaiterEntity waiter);
+
+
+    public AckDto deleteWaiter(
+            @PathVariable(name = "waiter_id") Long id);
 }
