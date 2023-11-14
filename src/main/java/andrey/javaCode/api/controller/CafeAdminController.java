@@ -1,20 +1,17 @@
 package andrey.javaCode.api.controller;
 
+import andrey.javaCode.api.dto.AckDto;
 import andrey.javaCode.api.dto.CafeAdminDTO;
 import andrey.javaCode.api.service.CafeAdminService;
-import andrey.javaCode.api.service.impl.CafeAdminServiceImpl;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@Transactional
 @RestController
 public class CafeAdminController {
 
@@ -27,14 +24,45 @@ public class CafeAdminController {
 
     @PostMapping(CREATE_CAFE_ADMIN)
     public CafeAdminDTO createAdmin(
-            @RequestParam String firstname,
-            @RequestParam String lastname,
-            @RequestParam Integer salary){
+            @RequestParam(name = "firstname") String firstname,
+            @RequestParam(name = "lastname") String lastname,
+            @RequestParam(name = "salary") Integer salary){
 
         return cafeAdminService.createAdmin(
                 firstname,
                 lastname,
                 salary
         );
+    }
+
+
+    @GetMapping(GET_CAFE_ADMINS)
+    public List<CafeAdminDTO> getAdmins(){
+
+       return cafeAdminService.getAdmins();
+    }
+
+
+    @PatchMapping(UPDATE_CAFE_ADMIN)
+    public CafeAdminDTO updateAdmin(
+            @PathVariable("admin_id") Long id,
+            @RequestParam(name = "firstname", required = false) String firstname,
+            @RequestParam(name = "lastname", required = false) String lastname,
+            @RequestParam(name = "salary", required = false) Integer salary){
+
+        return cafeAdminService.updateAdmin(
+                id,
+                firstname,
+                lastname,
+                salary
+        );
+    }
+
+
+    @DeleteMapping(DELETE_CAFE_ADMIN)
+    public AckDto deleteAdmin(
+            @PathVariable("admin_id") Long id){
+
+        return cafeAdminService.deleteAdmin(id);
     }
 }
