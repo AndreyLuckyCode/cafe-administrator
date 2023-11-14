@@ -17,10 +17,10 @@ public class CafeAdminController {
 
     CafeAdminService cafeAdminService;
 
-    private static final String  CREATE_CAFE_ADMIN= "api/admins";
-    private static final String  GET_CAFE_ADMINS= "api/admins";
-    private static final String  UPDATE_CAFE_ADMIN= "api/admins/{admin_id}";
-    private static final String  DELETE_CAFE_ADMIN= "api/admins/{admin_id}";
+    private static final String  CREATE_CAFE_ADMIN= "/api/admins";
+    private static final String  GET_CAFE_ADMINS= "/api/admins";
+    private static final String  UPDATE_CAFE_ADMIN= "/api/admins/{admin_id}";
+    private static final String  DELETE_CAFE_ADMIN= "/api/admins/{admin_id}";
 
     @PostMapping(CREATE_CAFE_ADMIN)
     public CafeAdminDTO createAdmin(
