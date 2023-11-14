@@ -6,7 +6,6 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Setter
 @Getter
@@ -20,7 +19,7 @@ public class BaristaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    UUID id;
+    Long id;
 
     String firstname;
 

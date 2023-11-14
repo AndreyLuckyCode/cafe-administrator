@@ -6,7 +6,6 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Builder
@@ -16,7 +15,7 @@ import java.util.UUID;
 public class WaiterDTO {
 
     @NonNull
-    UUID id;
+    Long id;
 
     @NonNull
     String firstname;

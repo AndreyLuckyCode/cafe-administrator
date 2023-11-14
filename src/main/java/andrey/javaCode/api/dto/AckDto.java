@@ -8,16 +8,13 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CafeAdminDTO {
+public class AckDto {
 
-    @NonNull
-    Long id;
+    Boolean answer;
 
-    @NonNull
-    String firstname;
-
-    @NonNull
-    String lastname;
-
-    Integer salary;
+    public static AckDto makeDefault(Boolean answer) {
+        return builder()
+                .answer(answer)
+                .build();
+    }
 }

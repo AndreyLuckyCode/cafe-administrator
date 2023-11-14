@@ -6,7 +6,6 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.UUID;
 
 @Setter
 @Getter
@@ -20,7 +19,7 @@ public class FoodOrderEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    UUID id;
+    Long id;
 
     @Builder.Default
     Instant foodOrderDate = Instant.now();

@@ -5,7 +5,6 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.Instant;
-import java.util.UUID;
 
 @Data
 @Builder
@@ -15,7 +14,7 @@ import java.util.UUID;
 public class CoffeeOrderDTO {
 
     @NonNull
-    UUID id;
+    Long id;
 
     @NonNull
     @JsonProperty("coffee_order_date")
