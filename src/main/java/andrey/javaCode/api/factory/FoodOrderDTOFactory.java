@@ -12,6 +12,7 @@ public class FoodOrderDTOFactory {
         return FoodOrderDTO.builder()
                 .id(entity.getId())
                 .foodOrderDate(entity.getFoodOrderDate())
+                .foodOrderBill(entity.getFoodOrderBill())
                 .tipsForFood(entity.getTipsForFood())
                 .build();
     }

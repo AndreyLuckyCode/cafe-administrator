@@ -21,6 +21,9 @@ public class FoodOrderDTO {
     Instant foodOrderDate = Instant.now();
 
     @NonNull
+    @JsonProperty("food_order_bill")
+    Integer foodOrderBill;
+
     @JsonProperty("tips_for_food")
     Integer tipsForFood;
 }
