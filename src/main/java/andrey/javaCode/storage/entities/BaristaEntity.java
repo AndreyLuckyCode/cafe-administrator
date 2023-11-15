@@ -1,5 +1,6 @@
 package andrey.javaCode.storage.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -27,10 +28,13 @@ public class BaristaEntity {
 
     Integer salary;
 
+    @JsonProperty("working_days_per_month")
     Integer workingDaysPerMonth;
 
+    @JsonProperty("clients_per_month")
     Integer clientsPerMonth;
 
+    @JsonProperty("barista_tips")
     Integer baristaTips;
 
     @OneToOne

@@ -41,7 +41,7 @@ public class WaiterServiceImpl implements WaiterService {
             @ModelAttribute WaiterEntity waiter) {
 
         CafeAdminEntity admin = cafeAdminRepository.findById(id).orElseThrow(()
-                -> new BadRequestException("Admin with this id doesn't exist"));
+                -> new NotFoundException("Admin with this id doesn't exist"));
 
         waiter.setCafeAdmin(admin);
 
@@ -91,7 +91,7 @@ public class WaiterServiceImpl implements WaiterService {
             @ModelAttribute WaiterEntity waiter) {
 
         WaiterEntity waiterEntity = waiterRepository.findById(id).orElseThrow(()
-                -> new BadRequestException("Waiter with this id doesn't exist"));
+                -> new NotFoundException("Waiter with this id doesn't exist"));
 
 
         if(waiter.getFirstname() != null && !waiter.getFirstname().trim().isEmpty()){
@@ -137,7 +137,7 @@ public class WaiterServiceImpl implements WaiterService {
 
 
         if(waiterRepository.findById(id).isEmpty()){
-            throw new BadRequestException("Waiter with this id doesn't exist.");
+            throw new NotFoundException("Waiter with this id doesn't exist.");
         }
 
         waiterRepository.deleteById(id);

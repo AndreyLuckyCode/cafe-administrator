@@ -3,6 +3,7 @@ package andrey.javaCode.api.service.impl;
 import andrey.javaCode.api.dto.AckDto;
 import andrey.javaCode.api.dto.CafeAdminDTO;
 import andrey.javaCode.api.exceptions.BadRequestException;
+import andrey.javaCode.api.exceptions.NotFoundException;
 import andrey.javaCode.api.factory.CafeAdminDTOFactory;
 import andrey.javaCode.api.service.CafeAdminService;
 import andrey.javaCode.storage.entities.CafeAdminEntity;
@@ -83,7 +84,7 @@ public class CafeAdminServiceImpl implements CafeAdminService{
             @RequestParam(name = "salary", required = false) Integer salary) {
 
         if(cafeAdminRepository.findById(id).isEmpty()){
-            throw new BadRequestException("Admin with this id doesn't exist.");
+            throw new NotFoundException("Admin with this id doesn't exist.");
         }
 
 
@@ -121,7 +122,7 @@ public class CafeAdminServiceImpl implements CafeAdminService{
             @PathVariable("admin_id") Long id) {
 
         if(cafeAdminRepository.findById(id).isEmpty()){
-            throw new BadRequestException("Admin with this id doesn't exist.");
+            throw new NotFoundException("Admin with this id doesn't exist.");
         }
 
         cafeAdminRepository.deleteById(id);
