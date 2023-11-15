@@ -20,7 +20,10 @@ public class CoffeeOrderDTO {
     @JsonProperty("coffee_order_date")
     Instant coffeeOrderDate = Instant.now();
 
-    @NonNull
     @JsonProperty("tips_for_coffee")
     Integer tipsForCoffee;
+
+    @NonNull
+    @JsonProperty("coffee_order_bill")
+    Integer coffeeOrderBill;
 }

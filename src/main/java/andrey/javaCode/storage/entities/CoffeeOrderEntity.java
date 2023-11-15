@@ -1,6 +1,7 @@
 package andrey.javaCode.storage.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -24,7 +25,11 @@ public class CoffeeOrderEntity {
     @Builder.Default
     Instant coffeeOrderDate = Instant.now();
 
+    @JsonProperty("tips_for_coffee")
     Integer tipsForCoffee;
+
+    @JsonProperty("coffee_order_bill")
+    Integer coffeeOrderBill;
 
     @OneToOne
     BaristaEntity barista;

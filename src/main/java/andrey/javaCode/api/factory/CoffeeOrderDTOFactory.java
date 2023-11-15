@@ -13,6 +13,7 @@ public class CoffeeOrderDTOFactory {
                 .id(entity.getId())
                 .coffeeOrderDate(entity.getCoffeeOrderDate())
                 .tipsForCoffee(entity.getTipsForCoffee())
+                .coffeeOrderBill(entity.getCoffeeOrderBill())
                 .build();
     }
 }
