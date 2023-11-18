@@ -33,9 +33,9 @@ public class WaiterController {
 
 
     @GetMapping(GET_WAITERS)
-    public List<WaiterDTO> getWaiters (
+    public List<WaiterDTO> getWaitersByAdminId (
             @PathVariable(name = "admin_id") Long id){
-        return waiterService.getWaiters(id);
+        return waiterService.getWaitersByAdminId(id);
     }
 
 

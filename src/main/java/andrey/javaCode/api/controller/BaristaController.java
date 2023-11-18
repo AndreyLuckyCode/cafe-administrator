@@ -35,9 +35,9 @@ public class BaristaController {
 
 
     @GetMapping(GET_BARISTAS)
-    public List<BaristaDTO> getBaristas(
+    public List<BaristaDTO> getBaristasByAdminId(
             @PathVariable(name = "admin_id") Long id){
-        return baristaService.getBaristas(id);
+        return baristaService.getBaristasByAdminId(id);
     }
 
 

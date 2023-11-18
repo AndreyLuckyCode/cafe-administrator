@@ -61,7 +61,7 @@ public class WaiterServiceImpl implements WaiterService {
 
     @Override
     @Transactional
-    public List<WaiterDTO> getWaiters(
+    public List<WaiterDTO> getWaitersByAdminId(
             @PathVariable(name = "admin_id") Long id) {
 
 

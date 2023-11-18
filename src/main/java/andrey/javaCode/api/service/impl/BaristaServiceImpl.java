@@ -61,9 +61,8 @@ public class BaristaServiceImpl implements BaristaService {
     }
 
 
-    @Override
     @Transactional
-    public List<BaristaDTO> getBaristas(
+    public List<BaristaDTO> getBaristasByAdminId(
             @PathVariable(name = "admin_id") Long id) {
 
 

@@ -16,7 +16,7 @@ public interface WaiterService {
             @ModelAttribute WaiterEntity waiterEntity);
 
 
-    public List<WaiterDTO> getWaiters(
+    public List<WaiterDTO> getWaitersByAdminId(
             @PathVariable(name = "admin_id") Long id);
 
 

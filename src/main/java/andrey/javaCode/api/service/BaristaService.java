@@ -18,7 +18,7 @@ public interface BaristaService {
             @ModelAttribute BaristaEntity baristaEntity);
 
 
-    public List<BaristaDTO> getBaristas(
+    public List<BaristaDTO> getBaristasByAdminId(
             @PathVariable(name = "admin_id") Long id);
 
 
