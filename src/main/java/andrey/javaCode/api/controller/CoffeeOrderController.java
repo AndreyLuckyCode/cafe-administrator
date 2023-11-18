@@ -22,6 +22,7 @@ public class CoffeeOrderController {
     private static final String GET_COFFEE_ORDERS  = "/api/barista/{barista_id}/coffee_order";
     private static final String UPDATE_COFFEE_ORDER  = "/api/coffee_order/{coffee_order_id}";
     private static final String DELETE_COFFEE_ORDER  = "/api/coffee_order/{coffee_order_id}";
+    private static final String GET_BARISTA_TIPS  = "/api/barista/{barista_id}/coffee_order_tips";
 
 
     @PostMapping(CREATE_COFFEE_ORDER)
@@ -56,5 +57,13 @@ public class CoffeeOrderController {
             @PathVariable(name = "coffee_order_id") Long id){
 
         return coffeeOrderService.deleteCoffeeOrder(id);
+    }
+
+
+    @GetMapping(GET_BARISTA_TIPS)
+    public String  getBaristaTips(
+            @PathVariable(name = "barista_id") Long id){
+
+        return coffeeOrderService.getBaristaTips(id);
     }
 }

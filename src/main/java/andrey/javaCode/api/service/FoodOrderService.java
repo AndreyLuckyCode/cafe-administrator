@@ -25,4 +25,7 @@ public interface FoodOrderService {
 
     public AckDto deleteFoodOrder(
             @PathVariable(name = "food_order_id") Long id);
+
+    public String getWaiterTips(
+            @PathVariable(name = "waiter_id") Long id);
 }

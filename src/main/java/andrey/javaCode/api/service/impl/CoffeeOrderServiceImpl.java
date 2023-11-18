@@ -121,4 +121,39 @@ public class CoffeeOrderServiceImpl implements CoffeeOrderService {
 
         return AckDto.builder().answer(true).build();
     }
+
+
+    @Override
+    @Transactional
+    public String getBaristaTips(
+            @PathVariable(name = "barista_id") Long id) {
+
+
+        Optional<BaristaEntity> barista = baristaRepository.findById(id);
+
+        if (barista.isEmpty()) {
+            throw new NotFoundException("Barista with that id doesn't exist");
+        }
+
+
+        List<CoffeeOrderEntity> orders = coffeeOrderRepository.findAllByBaristaId(id);
+
+        if (orders.isEmpty()) {
+            throw new NotFoundException("This barista doesn't have any orders");
+        }
+
+
+        int totalTips = 0;
+        for (CoffeeOrderEntity order : orders) {
+            totalTips += order.getTipsForCoffee();
+        }
+
+
+        if(totalTips == 0){
+            throw new NotFoundException("This barista doesn't have " +
+                    "any tips for coffee orders");
+        }
+
+        return "Total tips of barista with this id: " + totalTips;
+    }
 }
