@@ -22,6 +22,7 @@ public class FoodOrderController {
     private static final String GET_FOOD_ORDERS  = "/api/waiter/{waiter_id}/food_order";
     private static final String UPDATE_FOOD_ORDER  = "/api/food_order/{food_order_id}";
     private static final String DELETE_FOOD_ORDER  = "/api/food_order/{food_order_id}";
+    private static final String GET_WAITER_TIPS  = "/api/waiter/{waiter_id}/food_order_tips";
 
 
     @PostMapping(CREATE_FOOD_ORDER)
@@ -56,5 +57,13 @@ public class FoodOrderController {
             @PathVariable(name = "food_order_id") Long id){
 
         return foodOrderService.deleteFoodOrder(id);
+    }
+
+
+    @GetMapping(GET_WAITER_TIPS)
+    public String getWaiterTips(
+            @PathVariable(name = "waiter_id") Long id){
+
+        return foodOrderService.getWaiterTips(id);
     }
 }

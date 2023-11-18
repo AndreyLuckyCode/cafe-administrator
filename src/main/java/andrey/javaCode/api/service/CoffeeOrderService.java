@@ -3,7 +3,6 @@ package andrey.javaCode.api.service;
 import andrey.javaCode.api.dto.AckDto;
 import andrey.javaCode.api.dto.CoffeeOrderDTO;
 import andrey.javaCode.storage.entities.CoffeeOrderEntity;
-import andrey.javaCode.storage.entities.WaiterEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,4 +28,8 @@ public interface CoffeeOrderService {
 
     public AckDto deleteCoffeeOrder(
             @PathVariable(name = "coffee_order_id") Long id);
+
+
+    public String getBaristaTips(
+            @PathVariable(name = "barista_id") Long id);
 }

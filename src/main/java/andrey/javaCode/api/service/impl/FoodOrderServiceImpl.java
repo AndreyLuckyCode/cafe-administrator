@@ -6,7 +6,6 @@ import andrey.javaCode.api.exceptions.BadRequestException;
 import andrey.javaCode.api.exceptions.NotFoundException;
 import andrey.javaCode.api.factory.FoodOrderDTOFactory;
 import andrey.javaCode.api.service.FoodOrderService;
-import andrey.javaCode.storage.entities.BaristaEntity;
 import andrey.javaCode.storage.entities.CoffeeOrderEntity;
 import andrey.javaCode.storage.entities.FoodOrderEntity;
 import andrey.javaCode.storage.entities.WaiterEntity;
@@ -121,5 +120,40 @@ public class FoodOrderServiceImpl implements FoodOrderService {
 
 
         return AckDto.builder().answer(true).build();
+    }
+
+
+    @Override
+    @Transactional
+    public String getWaiterTips(Long id) {
+
+
+        Optional<WaiterEntity> waiter = waiterRepository.findById(id);
+
+        if (waiter.isEmpty()) {
+            throw new NotFoundException("Waiter with that id doesn't exist");
+        }
+
+
+        List<FoodOrderEntity> orders = foodOrderRepository.findAllByWaiterId(id);
+
+        if (orders.isEmpty()) {
+            throw new NotFoundException("This waiter doesn't have any orders");
+        }
+
+
+
+        int totalTips = 0;
+        for (FoodOrderEntity order : orders) {
+            totalTips += order.getTipsForFood();
+        }
+
+
+        if(totalTips == 0){
+            throw new NotFoundException("This waiter doesn't have " +
+                    "any tips for coffee orders");
+        }
+
+        return "Total tips of waiter with this id: " + totalTips;
     }
 }
